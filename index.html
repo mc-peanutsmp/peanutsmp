@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PeanutSMP | Welcome</title>
+
+    <link href="/templates/209/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/6.9.96/css/materialdesignicons.min.css" integrity="sha512-8G2pIpgpIJsq+hXzWgiRCQ1q++YBWoPwTvWS7WqZh9QhCOPzzC6nQC/ZYep1g6H3D2pnlm9yXl5BtyI+c6Whog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="minecraft-font-source" content="https://github.com/IdreesInc/Minecraft-Font/releases">
+
+    <script>
+(function () {
+  function showModal(el) {
+    if (window.jQuery && jQuery.fn && jQuery.fn.modal) {
+      jQuery(el).modal('show');
+      return true;
+    }
+
+    if (window.bootstrap && bootstrap.Modal) {
+      bootstrap.Modal.getOrCreateInstance(el).show();
+      return true;
+    }
+
+    return false;
+  }
+
+  function tryOpenFromHash() {
+    var hash = window.location.hash;
+    if (!hash) return false;
+
+    var el = document.querySelector(hash);
+    if (!el) return false;
+
+    if (!el.classList.contains('modal')) return false;
+
+    return showModal(el);
+  }
+
+  function openWithRetry(maxMs) {
+    var start = Date.now();
+
+    function tick() {
+      if (tryOpenFromHash()) return;
+
+      if (Date.now() - start < maxMs) {
+        setTimeout(tick, 100);
+      }
+    }
+
+    tick();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    openWithRetry(4000);
+    
+    // IP Copy Functionality
+    var copyBox = document.getElementById('copy');
+    if (copyBox) {
+      copyBox.addEventListener('click', function () {
+        var ipText = this.getAttribute('data-clipboard-text');
+        navigator.clipboard.writeText(ipText).then(function () {
+          var tooltipSpan = copyBox.querySelector('.custom-tooltip span');
+          if (tooltipSpan) {
+            var originalText = tooltipSpan.textContent;
+            tooltipSpan.textContent = "COPIED!";
+            setTimeout(function () {
+              tooltipSpan.textContent = originalText;
+            }, 1500);
+          }
+        });
+      });
+    }
+
+    // Fetch Live Discord Member Count
+    var serverId = "1550532723465125908";
+    if (serverId) {
+      fetch("https://discord.com/api/guilds/" + serverId + "/widget.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          if (data && data.presence_count !== undefined) {
+            var countEl = document.getElementById("discord-member-count");
+            if (countEl) {
+              countEl.textContent = data.presence_count.toLocaleString();
+            }
+          }
+        })
+        .catch(function (error) {
+          console.error("Error fetching discord count:", error);
+        });
+    }
+  });
+
+  window.addEventListener('hashchange', function () {
+    openWithRetry(2000);
+  });
+})();
+  </script>
+
+    <style>
+        @font-face {
+            font-family: "GenesisMinecraft";
+            src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Minecraft-Font@v1.0/Minecraft.otf") format("opentype");
+            font-display: swap;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: "GenesisMinecraft";
+            src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Minecraft-Font@v1.0/Minecraft-Bold.otf") format("opentype");
+            font-display: swap;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        @font-face {
+            font-family: "GenesisMinecraft";
+            src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Minecraft-Font@v1.0/Minecraft-Bold.otf") format("opentype");
+            font-display: swap;
+            font-style: normal;
+            font-weight: 900;
+        }
+
+        @media (max-width: 600px) {
+            .dplus > img{
+                display: none;
+            }
+        }
+
+        .absolute {
+            position: absolute;
+        }
+        .relative {
+            position: relative;
+        }
+        .group:hover .group-hover\:show {
+            transform: translateY(-0.5rem) scale(1.2);
+            opacity: 1;
+        }
+
+        .custom-tooltip {
+            z-index: 1030;
+            display: block;
+            visibility: visible;
+            font-size: 12px;
+            opacity: 0;
+            color: #424549;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 2rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease-in-out;
+            width: max-content;
+            top: -3.5rem;
+            right: 2%;
+            pointer-events: none;
+        }
+        .tooltip-pointer {
+            border: 6px solid white;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            right: 0.9rem;
+            top: 100%;
+        }
+
+        body {
+            color: silver;
+            line-height: normal;
+            font-family: 'proxima-nova', sans-serif;
+            font-style: normal;
+        }
+
+        .page-wrapper {
+            background: #111111!important;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .content.full {
+            width: 100%;
+        }
+
+        html {
+            background: #111111;
+            overscroll-behavior-y: none;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        #foot .copyright-text span,
+        #foot .container .copyright .copyright-links > a {
+            font-family: 'GenesisMinecraft', 'MC', monospace !important;
+        }
+
+        #foot {color: grey;padding: 40px 0px;}
+        #foot .container {color: #575a68;font-weight: 600 !important ;font-size: 15px;display: flex;align-items: center;justify-content: center;}
+        #foot .container p {font-size: 12px;opacity: .56;}
+        
+        #foot .copyright {
+            display: flex;
+            color: #70757a;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #foot .copyright> span {
+            margin-bottom: 0px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        #foot .copyright strong {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        #foot .copyright .copyright-links {
+            margin-top: 8px;
+            display: flex;
+            gap: 15px;
+            font-size: 10px;
+        }
+
+        #foot .copyright .copyright-links > a {
+            color: #a7b2c1 !important;
+            font-weight: normal;
+            cursor: pointer;
+            transition: color .2s;
+        }
+        #foot .copyright .copyright-links > a:hover {
+            color: #ffffff !important;
+        }
+        #foot .copyright > small {
+            font-weight: 600 !important;
+            color: #7a7a7a;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        
+        .copyright > .copyright-text {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .copyright-text > span {
+            font-size: 24px;
+            font-family: 'GenesisMinecraft', 'MC', monospace;
+            font-weight: normal;
+            color: #ffffff;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 50px;
+            padding-bottom:40px;
+        }
+        .body .sidebar {
+            display: none !important;
+        }
+        .body .content {
+            flex: 1;
+            width: 100%;
+            padding: 0px !important;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .home-contents {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5%;
+        }
+
+        .ip-home {
+            background: #1e1e1e;
+            padding: 10px 14px !important;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            border-radius: 28px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            width: 85%;
+            margin: 15px auto 0 auto;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .img-text-home {
+            position: absolute;
+            margin-left: 3%;
+            z-index: 1;
+            color: white;
+        }
+
+        .img-text-home > h2 {
+            font-weight: bold;
+            text-shadow: 1px 1px 24px black;
+        }
+
+        .store-img-home, .join-img-home, .stats-img-home {
+            height: 300px;
+            border-radius: 24px;
+        }
+        .stats-img-home {
+            transform: scaleX(-1);
+        }
+
+        .discord-img-home{
+            width: 60px;
+        }
+        .logo-img-home {
+            background-color: rgb(239, 176, 104);
+            height: 204px; 
+            padding: 20px 60px; 
+            border-radius: 24px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .discord-card-home {
+            display: flex;
+            align-items: center;
+            background: #1e1e1e;
+            height: 300px;
+            justify-content: center;
+            flex-direction: column;
+            width: 220px;
+            border-radius: 24px;
+            text-decoration: none !important;
+        }
+        
+        .relative.group > a {
+            text-decoration: none !important;
+        }
+
+        .discord-count {
+            color: white;
+            font-size: 32px;
+            margin-top: 8px;
+            font-weight: 800;
+        }
+        .discord-message{
+            color: white;
+        }
+    </style>
+
+<script type="text/javascript">
+   (function(c,l,a,r,i,t,y){
+       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+   })(window, document, "clarity", "script", "fxlepb8eap");
+</script>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="main-content">
+        <div class="container">
+            <div class="notification">
+            </div>
+        </div>
+
+	<div class="body row row-fluid page-wrapper Welcome--page">
+		<div class="content span8 col-md-8">
+			
+        		<div class="home-contents">
+    		        <div class="relative" style="text-align: center;">
+    		            <a href="index.html">
+                        <img class="logo-img-home" src="logo.png" alt="Logo">
+                        </a>
+                        <div class="below-logo">
+                            <div id="copy" data-clipboard-text="peanutsmp.mcsh.io" class="ip-home relative group">
+                                <i class="mdi mdi-content-copy mdi-32px" style="transform: scaleX(-1)"></i>
+                                Peanutsmp.mcsh.io
+                                <div class="custom-tooltip absolute group-hover:show">
+        							<span>Copy to clipboard</span>
+        							<span class="tooltip-pointer absolute"></span>
+        						</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative group">
+    					<a href="/store">
+    						<div class="img-text-home">
+    							<h2>Store</h2>
+    						</div>
+    						<img class="store-img-home" src="https://website.donutsmp.org/store.png">
+    						<div class="custom-tooltip absolute group-hover:show">
+    							<span>Coming Soon...</span>
+    							<span class="tooltip-pointer absolute"></span>
+    						</div>
+    					</a>
+    				</div>
+				
+    				<div class="relative group">
+    					<a href="https://discord.com/invite/PTK7wxukf" target="_blank" style="text-decoration: none;">
+    					    <div class="discord-card-home">
+        						<img class="discord-img-home" src="https://website.donutsmp.org/discord.png">
+        						<span id="discord-member-count" class="discord-count">LOADING...</span>
+        						<span class="discord-message"><span style="color: green; padding:4px">●</span>Discord Members</span>
+        						<div class="custom-tooltip absolute group-hover:show">
+        							<span>Join the discord</span>
+        							<span class="tooltip-pointer absolute"></span>
+        						</div>
+    					    </div>
+    					</a>
+    				</div>				
+
+        		    <div class="relative group">
+    					<a href="/">
+                            <div class="img-text-home ">
+    							<h2>Stats</h2>
+    						</div>
+    						<img class="stats-img-home" src="https://website.donutsmp.org/stats.png">
+    						<div class="custom-tooltip absolute group-hover:show">
+    							<span>Coming soon...</span>
+    							<span class="tooltip-pointer absolute"></span>
+    						</div>
+    					</a>
+    				</div>
+        		    
+    				<div class="relative group">
+    					<a href="https://www.youtube.com/watch?v=mPbVIS5wL6A" target="_blank">
+    						<div class="img-text-home">
+    							<h2>How To Join</h2>
+    						</div>
+    						<img class="join-img-home" src="video.png" alt="How To Join">
+    						<div class="custom-tooltip absolute group-hover:show">
+    							<span>Watch video</span>
+    							<span class="tooltip-pointer absolute"></span>
+    						</div>
+    					</a>
+    				</div>
+        	    </div>
+
+		</div>
+
+		<div class="sidebar">
+			
+		</div>
+
+	</div>
+
+    </div>
+
+    <div class="bottom-content">
+        <div id="foot">
+            <div class="container">
+                <section class="copyright">
+                    <div class="copyright-text">
+                        <div class="copyright-text">
+                            <span>peanutsmp.mcsh.io</span>
+                        </div>
+                    </div>
+                    <small>Not associated with Mojang or Microsoft</small>
+                    <div class="copyright-links">
+                        <a data-toggle="modal" data-target="#privacy">Store Privacy Policy</a>
+                        <a data-toggle="modal" data-target="#support">Support</a>
+                        <a data-toggle="modal" data-target="#terms">Terms of Service</a>
+                        <a data-toggle="modal" data-target="#refunds">Refund Policy</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
