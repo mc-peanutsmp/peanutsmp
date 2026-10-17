@@ -105,6 +105,22 @@
   </script>
 
     <style>
+        /* Professional Matching Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+            border: 2px solid #111111;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fcb800;
+        }
+
         @font-face {
             font-family: "GenesisMinecraft";
             src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Minecraft-Font@v1.0/Minecraft.otf") format("opentype");
@@ -141,8 +157,17 @@
         .relative {
             position: relative;
         }
+        
+        /* Ultra-Smooth Professional Animations */
+        .relative.group {
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .relative.group:hover {
+            transform: translateY(-6px);
+        }
+
         .group:hover .group-hover\:show {
-            transform: translateY(-0.5rem) scale(1.2);
+            transform: translateY(-0.5rem) scale(1.05);
             opacity: 1;
         }
 
@@ -162,11 +187,12 @@
             padding-bottom: 0.5rem;
             background-color: white;
             border-radius: 0.5rem;
-            transition: transform 0.3s ease-in-out;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             width: max-content;
             top: -3.5rem;
             right: 2%;
             pointer-events: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         .tooltip-pointer {
             border: 6px solid white;
@@ -325,6 +351,11 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .ip-home:hover {
+            background: #252525;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .img-text-home {
@@ -342,14 +373,28 @@
         .store-img-home, .join-img-home, .stats-img-home {
             height: 300px;
             border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        .relative.group:hover .store-img-home,
+        .relative.group:hover .join-img-home,
+        .relative.group:hover .stats-img-home,
+        .relative.group:hover .discord-card-home {
+            filter: brightness(1.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
         .stats-img-home {
             transform: scaleX(-1);
         }
 
         .discord-img-home{
             width: 60px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        .discord-card-home:hover .discord-img-home {
+            transform: scale(1.08);
+        }
+
         .logo-img-home {
             background-color: rgb(239, 176, 104);
             height: 204px; 
@@ -358,6 +403,12 @@
             display: block;
             margin: 0 auto;
             object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .logo-img-home:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
+            box-shadow: 0 15px 35px rgba(239, 176, 104, 0.2);
         }
 
         .discord-card-home {
@@ -370,6 +421,10 @@
             width: 220px;
             border-radius: 24px;
             text-decoration: none !important;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .discord-card-home:hover {
+            background: #232323;
         }
         
         .relative.group > a {
@@ -443,7 +498,7 @@
     					<a href="https://discord.com/invite/PTK7wxukf" target="_blank" style="text-decoration: none;">
     					    <div class="discord-card-home">
         						<img class="discord-img-home" src="https://website.donutsmp.org/discord.png">
-        						<span id="discord-member-count" class="discord-count">LOADING...</span>
+        						<span id="discord-member-count" class="discord-count">1,000,000+</span>
         						<span class="discord-message"><span style="color: green; padding:4px">●</span>Discord Members</span>
         						<div class="custom-tooltip absolute group-hover:show">
         							<span>Join the discord</span>
